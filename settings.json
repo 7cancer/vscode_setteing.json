@@ -1,0 +1,209 @@
+{
+  // 保存時の自動インデント整列
+  "editor.formatOnSave": false,
+  
+  "editor.formatOnType": true,
+
+  // ファイルを開く時、常に新しいタブで開く
+  "workbench.editor.enablePreview": false,
+
+  // tabサイズの設定
+  "editor.tabSize": 2,
+
+  // 右のミニマップを表示しない
+  "editor.minimap.enabled": false,
+
+  // google翻訳で優先的に日本語を選択
+  "vscodeGoogleTranslate.preferredLanguage": "ja",
+
+
+  // 設定: LaTeX Workshop
+  // latex-workshop.latex.tools: Tool の定義
+  "latex-workshop.latex.tools": [
+    // latexmk を利用した xelatex によるビルドコマンド
+    {
+      "name": "Latexmk (XeLaTeX)",
+      "command": "latexmk",
+      "args": [
+        "-f",
+        "-gg",
+        "-pv",
+        "-xelatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    // latexmk を利用した uplatex によるビルドコマンド
+    {
+      "name": "Latexmk (upLaTeX)",
+      "command": "latexmk",
+      "args": [
+        "-f",
+        "-gg",
+        "-pv",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    // latexmk を利用した platex によるビルドコマンド
+    // 古い LaTeX のテンプレートを使いまわしている (ドキュメントクラスが jreport や jsreport ) 場合のため
+    {
+      "name": "Latexmk (pLaTeX)",
+      "command": "latexmk",
+      "args": [
+        "-f",
+        "-gg",
+        "-pv",
+        "-latex='platex'",
+        "-latexoption='-kanji=utf8 -no-guess-input-env'",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    // latexmk を利用した lualatex によるビルドコマンド
+    {
+      "name": "Latexmk (LuaLaTeX)",
+      "command": "latexmk",
+      "args": [
+        "-f",
+        "-gg",
+        "-pv",
+        "-lualatex",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "ptex2pdf",
+      "command": "ptex2pdf",
+      "args": [
+        "-u", // uplatexならこれを有効化
+        "-l",
+        "-ot",
+        "-kanji=utf8 -synctex=1 -interaction=nonstopmode -file-line-error",
+        "%DOC%"
+      ]
+    }
+  ],
+  // latex-workshop.latex.recipes: Recipe の定義
+  "latex-workshop.latex.recipes": [
+    // ptex2pdfで書かれた文書のビルドレシピ
+    {
+      "name": "ptex2pdf",
+      "tools": [
+        "ptex2pdf",
+      ]
+    },
+    // XeLaTeX で書かれた文書のビルドレシピ
+    {
+      "name": "XeLaTeX",
+      "tools": [
+        "Latexmk (XeLaTeX)"
+      ]
+    },
+    // LaTeX(upLaTeX) で書かれた文書のビルドレシピ
+    {
+      "name": "upLaTeX",
+      "tools": [
+        "Latexmk (upLaTeX)"
+      ]
+    },
+    // LaTeX(pLaTeX) で書かれた文書のビルドレシピ
+    {
+      "name": "pLaTeX",
+      "tools": [
+        "Latexmk (pLaTeX)"
+      ]
+    },
+    // LuaLaTeX で書かれた文書のビルドレシピ
+    {
+      "name": "LuaLaTeX",
+      "tools": [
+        "Latexmk (LuaLaTeX)"
+      ]
+    }
+  ],
+
+  // latex-workshop.latex.magic.args: マジックコメント付きの LaTeX ドキュメントをビルドする設定
+  // '%!TEX' で始まる行はマジックコメントと呼ばれ、LaTeX のビルド時にビルドプログラムに解釈され、
+  // プログラムの挙動を制御する事ができる。
+  // 参考リンク: https://blog.miz-ar.info/2016/11/magic-comments-in-tex/
+  "latex-workshop.latex.magic.args": [
+    "-f",
+    "-gg",
+    "-pv",
+    "-synctex=1",
+    "-interaction=nonstopmode",
+    "-file-line-error",
+    "%DOC%"
+  ],
+
+  // latex-workshop.latex.clean.fileTypes: クリーンアップ時に削除されるファイルの拡張子
+  // LaTeX 文書はビルド時に一時ファイルとしていくつかのファイルを生成するが、最終的に必要となるのは
+  // PDF ファイルのみである場合などが多い。また、LaTeX のビルド時に失敗した場合、失敗時に生成された
+  // 一時ファイルの影響で、修正後のビルドに失敗してしまう事がよくある。そのため、一時的なファイルを
+  // 削除する機能 (クリーンアップ) が LaTeX Workshop には備わっている。
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.synctex.gz",
+    // for Beamer files
+    "_minted*",
+    "*.nav",
+    "*.snm",
+    "*.vrb",
+  ],
+  // latex-workshop.view.pdf.viewer: PDF ビューアの開き方
+  // VSCode 自体には PDF ファイルを閲覧する機能が備わっていないが、
+  // LaTeX Workshop にはその機能が備わっている。
+  // "tab" オプションを指定すると、今開いているエディタを左右に分割し、右側に生成されたPDFを表示するようにしてくれる
+  // この PDF ビュアーは LaTeX のビルドによって更新されると同期して内容を更新してくれる。
+  "latex-workshop.view.pdf.viewer": "tab",
+
+  // latex-workshop.latex.clean.onFailBuild.enabled: ビルド失敗時に一時ファイルのクリーンアップを行うかどうか
+  // 上記説明にもあったように、ビルド失敗時に生成された一時ファイルが悪影響を及ぼす事があるため、自動で
+  // クリーンアップがかかるようにしておく。
+  // "latex-workshop.latex.clean.onFailBuild.enabled": true,
+  
+  // 並列処理のssh設定
+  // 不要なら消す
+  "sshfs.configs": [
+    {
+      "host": "10.202.84.16",
+      "label": "nya",
+      "password": true,
+      "port": 22,
+      "root": "/home/g2119001",
+      "username": "g2119001",
+      "name": "unnamed"
+    }
+  ],
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "C_Cpp.updateChannel": "Insiders",
+}
