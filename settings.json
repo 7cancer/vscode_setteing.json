@@ -1,7 +1,11 @@
 {
+
+  // 拡張機能`Trailing Spaces`の設定
+  // 末尾の空白を自動で消去する
+  "files.trimTrailingWhitespace": true,
+
   // 保存時の自動インデント整列
   "editor.formatOnSave": false,
-  
   "editor.formatOnType": true,
 
   // ファイルを開く時、常に新しいタブで開く
@@ -16,120 +20,83 @@
   // google翻訳で優先的に日本語を選択
   "vscodeGoogleTranslate.preferredLanguage": "ja",
 
+  // VSCodeのWindow配色に関する設定
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#049ACC",
+    "titleBar.activeForeground": "#FFFFFF",
+    "activityBar.background": "#036180",
+    "activityBar.foreground": "#FFFFFF"
+  },
+
+
+
+  // 並列処理のssh設定
+  // 不要なら消す
+  "sshfs.configs": [
+    {
+      "host": "10.202.84.16",
+      "label": "nya",
+      "password": true,
+      "port": 22,
+      "root": "/home/g2119001",
+      "username": "g2119001",
+      "name": "unnamed"
+    }
+  ],
+
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "C_Cpp.updateChannel": "Insiders",
+
+  // ファイル，フォルダのアイコンテーマ設定
+  "workbench.iconTheme": "vscode-icons",
+
+  "platformio-ide.buildTask": "",
+
+  // 拡張機能`GlassIt-VSC`でWindowの透過度に関する設定
+  // ctrl + alt + z でもっと透過，ctrl + alt + c でもっと非透過．
+  "glassit.alpha": 245,
+
+
+
+
+  // 以下はLaTeXに関する設定
+
+  "[tex]": {
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
+  "[latex]": {
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
+  "[bibtex]": {
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
 
   // 設定: LaTeX Workshop
   // latex-workshop.latex.tools: Tool の定義
-  "latex-workshop.latex.tools": [
-    // latexmk を利用した xelatex によるビルドコマンド
-    {
-      "name": "Latexmk (XeLaTeX)",
-      "command": "latexmk",
-      "args": [
-        "-f",
-        "-gg",
-        "-pv",
-        "-xelatex",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ]
-    },
-    // latexmk を利用した uplatex によるビルドコマンド
-    {
-      "name": "Latexmk (upLaTeX)",
-      "command": "latexmk",
-      "args": [
-        "-f",
-        "-gg",
-        "-pv",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ]
-    },
-    // latexmk を利用した platex によるビルドコマンド
-    // 古い LaTeX のテンプレートを使いまわしている (ドキュメントクラスが jreport や jsreport ) 場合のため
-    {
-      "name": "Latexmk (pLaTeX)",
-      "command": "latexmk",
-      "args": [
-        "-f",
-        "-gg",
-        "-pv",
-        "-latex='platex'",
-        "-latexoption='-kanji=utf8 -no-guess-input-env'",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ]
-    },
-    // latexmk を利用した lualatex によるビルドコマンド
-    {
-      "name": "Latexmk (LuaLaTeX)",
-      "command": "latexmk",
-      "args": [
-        "-f",
-        "-gg",
-        "-pv",
-        "-lualatex",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-file-line-error",
-        "%DOC%"
-      ]
-    },
-    {
-      "name": "ptex2pdf",
-      "command": "ptex2pdf",
-      "args": [
-        "-u", // uplatexならこれを有効化
-        "-l",
-        "-ot",
-        "-kanji=utf8 -synctex=1 -interaction=nonstopmode -file-line-error",
-        "%DOC%"
-      ]
-    }
-  ],
-  // latex-workshop.latex.recipes: Recipe の定義
   "latex-workshop.latex.recipes": [
-    // ptex2pdfで書かれた文書のビルドレシピ
     {
-      "name": "ptex2pdf",
+      "name": "latexmk",
       "tools": [
-        "ptex2pdf",
+        "latexmk"
       ]
     },
-    // XeLaTeX で書かれた文書のビルドレシピ
+  ],
+
+  // ビルドのレシピに使われるパーツ
+  "latex-workshop.latex.tools": [
     {
-      "name": "XeLaTeX",
-      "tools": [
-        "Latexmk (XeLaTeX)"
-      ]
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-silent",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ],
     },
-    // LaTeX(upLaTeX) で書かれた文書のビルドレシピ
-    {
-      "name": "upLaTeX",
-      "tools": [
-        "Latexmk (upLaTeX)"
-      ]
-    },
-    // LaTeX(pLaTeX) で書かれた文書のビルドレシピ
-    {
-      "name": "pLaTeX",
-      "tools": [
-        "Latexmk (pLaTeX)"
-      ]
-    },
-    // LuaLaTeX で書かれた文書のビルドレシピ
-    {
-      "name": "LuaLaTeX",
-      "tools": [
-        "Latexmk (LuaLaTeX)"
-      ]
-    }
   ],
 
   // latex-workshop.latex.magic.args: マジックコメント付きの LaTeX ドキュメントをビルドする設定
@@ -145,12 +112,8 @@
     "-file-line-error",
     "%DOC%"
   ],
-
-  // latex-workshop.latex.clean.fileTypes: クリーンアップ時に削除されるファイルの拡張子
-  // LaTeX 文書はビルド時に一時ファイルとしていくつかのファイルを生成するが、最終的に必要となるのは
-  // PDF ファイルのみである場合などが多い。また、LaTeX のビルド時に失敗した場合、失敗時に生成された
-  // 一時ファイルの影響で、修正後のビルドに失敗してしまう事がよくある。そのため、一時的なファイルを
-  // 削除する機能 (クリーンアップ) が LaTeX Workshop には備わっている。
+  // 生成ファイルを削除するときに対象とするファイル
+  // デフォルト値に "*.synctex.gz" を追加
   "latex-workshop.latex.clean.fileTypes": [
     "*.aux",
     "*.bbl",
@@ -171,39 +134,19 @@
     "*.fls",
     "*.log",
     "*.fdb_latexmk",
-    "*.synctex.gz",
-    // for Beamer files
-    "_minted*",
-    "*.nav",
     "*.snm",
-    "*.vrb",
+    "*.nav",
+    "*.dvi",
+    "*.synctex.gz"
   ],
+
   // latex-workshop.view.pdf.viewer: PDF ビューアの開き方
   // VSCode 自体には PDF ファイルを閲覧する機能が備わっていないが、
   // LaTeX Workshop にはその機能が備わっている。
   // "tab" オプションを指定すると、今開いているエディタを左右に分割し、右側に生成されたPDFを表示するようにしてくれる
   // この PDF ビュアーは LaTeX のビルドによって更新されると同期して内容を更新してくれる。
   "latex-workshop.view.pdf.viewer": "tab",
+  "json.schemas": [
 
-  // latex-workshop.latex.clean.onFailBuild.enabled: ビルド失敗時に一時ファイルのクリーンアップを行うかどうか
-  // 上記説明にもあったように、ビルド失敗時に生成された一時ファイルが悪影響を及ぼす事があるため、自動で
-  // クリーンアップがかかるようにしておく。
-  // "latex-workshop.latex.clean.onFailBuild.enabled": true,
-  
-  // 並列処理のssh設定
-  // 不要なら消す
-  "sshfs.configs": [
-    {
-      "host": "10.202.84.16",
-      "label": "nya",
-      "password": true,
-      "port": 22,
-      "root": "/home/g2119001",
-      "username": "g2119001",
-      "name": "unnamed"
-    }
   ],
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "C_Cpp.updateChannel": "Insiders",
 }

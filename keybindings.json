@@ -1,26 +1,34 @@
 // Place your key bindings in this file to override the defaults
 [
-  {
+  { // 次のタブ
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor"
+  },
+  { // 前のタブ
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor"
+  },
+  { // 選択しながらカーソルダウン
     "key": "ctrl+shift+s",
     "command": "cursorDownSelect",
     "when": "editorTextFocus"
   },
-  {
+  { // 選択しながらカーソルアップ
     "key": "ctrl+shift+w",
     "command": "cursorUpSelect",
     "when": "editorTextFocus"
   },
-  {
+  { // 選択しながら行頭まで飛ばす
     "key": "ctrl+shift+a",
     "command": "cursorHomeSelect",
     "when": "editorTextFocus"
   },
-  {
+  { // 選択しながら行末まで飛ばす
     "key": "ctrl+shift+d",
     "command": "cursorEndSelect",
     "when": "editorTextFocus"
   },
-  {
+  { // 選択した文章をグーグル翻訳に投げる
     "key": "ctrl+alt+t",
     "command": "extension.translateLinesUnderCursor",
     "when": "editorTextFocus"
